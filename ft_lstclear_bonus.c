@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-oliv <ede-oliv@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ede-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 16:22:06 by ede-oliv          #+#    #+#             */
-/*   Updated: 2022/12/20 16:22:06 by ede-oliv         ###   ########.fr       */
+/*   Created: 2023/01/07 05:19:26 by ede-oliv          #+#    #+#             */
+/*   Updated: 2023/01/07 05:20:32 by ede-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*nextptr;
 	t_list	*ptr;
 
-	ptr = *alst;
+	if (!lst || !del)
+		return ;
+	ptr = *lst;
 	while (ptr)
 	{
 		nextptr = ptr->next;
 		ft_lstdelone(&ptr, del);
 		ptr = nextptr;
 	}
-	*alst = NULL;
+	*lst = NULL;
 }
